@@ -6,7 +6,9 @@ const assertionFunc = (value, numberOfParts) => {
   const result = splitInteger(value, numberOfParts);
 
   expect(result).toHaveLength(numberOfParts);
+
   expect(result.every(Number.isInteger)).toBeTruthy();
+
   expect(result.reduce((a, b) => a + b, 0)).toBe(value);
 
   for (let i = 0; i < result.length - 1; i++) {
@@ -22,14 +24,14 @@ const assertionFunc = (value, numberOfParts) => {
 };
 
 test(
-  'should split a number into equal parts '
-  + 'if a value is divisible by a numberOfParts',
+  `should split a number into equal parts
+   if a value is divisible by a numberOfParts`,
   () => {
     expect(assertionFunc(6, 2)).toEqual([3, 3]);
   }
 );
 
-test('should return a part equals to avalue when splitting into 1 part', () => {
+test('should return a part equal to a value when splitting into 1 part', () => {
   expect(assertionFunc(8, 1)).toEqual([8]);
 });
 
