@@ -5,11 +5,11 @@ const splitInteger = require('./splitInteger');
 const assertionFunc = (value, numberOfParts) => {
   const result = splitInteger(value, numberOfParts);
 
-  expect(result).toHaveLength(numberOfParts);
-
   expect(result.every(Number.isInteger)).toBeTruthy();
 
   expect(result.reduce((a, b) => a + b, 0)).toBe(value);
+
+  expect(result).toHaveLength(numberOfParts);
 
   for (let i = 0; i < result.length - 1; i++) {
     expect(result[i + 1]).toBeGreaterThanOrEqual(result[i]);
@@ -31,7 +31,7 @@ test(
   }
 );
 
-test('should return a part equal to a value when splitting into 1 part', () => {
+test('should return a part equal to value when splitting into 1 part', () => {
   expect(assertionFunc(8, 1)).toEqual([8]);
 });
 
@@ -42,9 +42,7 @@ test('should include zeros when value < numberOfParts', () => {
 });
 
 test('should split 32 into 6 parts as in example', () => {
-  const result = assertionFunc(32, 6);
-
-  expect(result).toEqual([5, 5, 5, 5, 6, 6]);
+  expect(assertionFunc(32, 6)).toEqual([5, 5, 5, 5, 6, 6]);
 });
 
 test('should split 17 into 4 parts as in example', () => {
